@@ -1,9 +1,15 @@
-# QRYPTEX
-## Multi-Paradigm Post-Quantum Cryptographic Research Framework
+<p align="center">
+  <img src="assets/logo.png" alt="QRYPTEX Logo" width="360" />
+</p>
 
-[![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-EXPERIMENTAL%20RESEARCH-red.svg)]()
-[![Edition](https://img.shields.io/badge/rust-2024%2F2021-orange.svg)]()
+<h1 align="center">QRYPTEX</h1>
+<p align="center"><strong>Multi-Paradigm Post-Quantum Cryptographic Research Framework</strong></p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg" alt="License" /></a>
+  <img src="https://img.shields.io/badge/status-EXPERIMENTAL%20RESEARCH-red.svg" alt="Status" />
+  <img src="https://img.shields.io/badge/rust-2024%2F2021-orange.svg" alt="Edition" />
+</p>
 
 > **CRITICAL SECURITY NOTICE**:  
 > **QRYPTEX is an experimental research framework and candidate construction.**  
