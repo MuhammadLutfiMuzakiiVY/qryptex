@@ -51,6 +51,7 @@ QRYPTEX
 ├── CRYPTANALYSIS.md        # Known attacks and hardness estimations
 ├── PARAMETERS.md           # Parameter sets and trade-offs
 ├── BENCHMARK.md            # Comparative measurements against NIST baselines
+├── GITHUB_GUIDE.md         # Bilingual GitHub communication & workflow guide
 └── SECURITY.md             # Security disclosures and vulnerability reporting
 ```
 
