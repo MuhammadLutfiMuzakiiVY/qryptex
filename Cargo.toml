@@ -14,9 +14,9 @@ members = [
 [workspace.package]
 version = "0.1.0"
 edition = "2021"
-authors = ["QRYPTEX Research Team"]
+authors = ["Muhammad Lutfi Muzaki"]
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/example/qryptex"
+repository = "https://github.com/MuhammadLutfiMuzakiiVY/qryptex"
 readme = "README.md"
 
 [workspace.dependencies]
