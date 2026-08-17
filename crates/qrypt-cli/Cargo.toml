@@ -1,0 +1,19 @@
+[package]
+name = "qrypt-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Command-line interface for QRYPTEX post-quantum research framework"
+
+[dependencies]
+qrypt-core = { path = "../qrypt-core" }
+qrypt-kem = { path = "../qrypt-kem" }
+qrypt-signature = { path = "../qrypt-signature" }
+qrypt-combiner = { path = "../qrypt-combiner" }
+qrypt-analysis = { path = "../qrypt-analysis" }
+qrypt-benchmark = { path = "../qrypt-benchmark" }
+clap.workspace = true
+rand_core.workspace = true
+rand_chacha.workspace = true
+hex.workspace = true

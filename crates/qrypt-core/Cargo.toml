@@ -1,0 +1,17 @@
+[package]
+name = "qrypt-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Core mathematical primitives, algebra, constant-time operations, and CSPRNG for QRYPTEX"
+
+[dependencies]
+subtle.workspace = true
+zeroize.workspace = true
+sha3.workspace = true
+rand_core.workspace = true
+rand_chacha.workspace = true
+hex.workspace = true
+
+[dev-dependencies]

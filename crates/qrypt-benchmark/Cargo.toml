@@ -1,0 +1,24 @@
+[package]
+name = "qrypt-benchmark"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Benchmarking harness for QRYPTEX post-quantum primitives and combiners"
+
+[dependencies]
+qrypt-core = { path = "../qrypt-core" }
+qrypt-kem = { path = "../qrypt-kem" }
+qrypt-signature = { path = "../qrypt-signature" }
+qrypt-combiner = { path = "../qrypt-combiner" }
+rand_core.workspace = true
+rand_chacha.workspace = true
+criterion.workspace = true
+
+[[bench]]
+name = "kem_bench"
+harness = false
+
+[[bench]]
+name = "sig_bench"
+harness = false

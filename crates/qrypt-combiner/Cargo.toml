@@ -1,0 +1,19 @@
+[package]
+name = "qrypt-combiner"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Multi-paradigm hybrid combiners for KEM and Signature schemes in QRYPTEX"
+
+[dependencies]
+qrypt-core = { path = "../qrypt-core" }
+qrypt-kem = { path = "../qrypt-kem" }
+qrypt-signature = { path = "../qrypt-signature" }
+subtle.workspace = true
+zeroize.workspace = true
+sha3.workspace = true
+hkdf.workspace = true
+sha2.workspace = true
+rand_core.workspace = true
+hex.workspace = true

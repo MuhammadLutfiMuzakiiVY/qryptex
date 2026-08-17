@@ -1,0 +1,10 @@
+/target/
+**/*.rs.bk
+*.pdb
+*.hex
+kat_vectors.json
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
