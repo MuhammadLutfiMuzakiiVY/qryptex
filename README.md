@@ -162,6 +162,7 @@ cargo bench -p qrypt-benchmark
 
 ## Documentation
 
+- [ROADMAP.md](ROADMAP.md) — Engineering milestones, tracked roadmap, and research trajectory.
 - [DESIGN.md](DESIGN.md) — Mathematical specifications and transformation mechanics.
 - [CRYPTANALYSIS.md](CRYPTANALYSIS.md) — Reduction proofs, Core-SVP & ISD complexity bounds.
 - [PARAMETERS.md](PARAMETERS.md) — Concrete algebraic parameter sets.
