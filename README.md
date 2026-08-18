@@ -6,8 +6,10 @@
 
 A clean-room, pure-Rust research framework exploring hybrid post-quantum key encapsulation mechanisms (KEM) and digital signature combiners.
 
+[![CI](https://github.com/MuhammadLutfiMuzakiiVY/qryptex/actions/workflows/ci.yml/badge.svg)](https://github.com/MuhammadLutfiMuzakiiVY/qryptex/actions/workflows/ci.yml)
+[![Security Audit](https://github.com/MuhammadLutfiMuzakiiVY/qryptex/actions/workflows/security.yml/badge.svg)](https://github.com/MuhammadLutfiMuzakiiVY/qryptex/actions/workflows/security.yml)
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+[![MSRV](https://img.shields.io/badge/MSRV-1.75+-informational.svg)]()
 
 > **Note**: This repository contains experimental candidate constructions developed for academic and cryptographic research purposes. It has not undergone formal third-party audits and is not intended for production systems.
 
