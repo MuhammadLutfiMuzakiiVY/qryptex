@@ -146,7 +146,7 @@ impl Poly {
         for i in 0..(N / 4) {
             let byte = buf[2 * i];
             let byte2 = buf[2 * i + 1];
-            
+
             let a0 = (byte & 1) + ((byte >> 1) & 1);
             let b0 = ((byte >> 2) & 1) + ((byte >> 3) & 1);
             res.coeffs[4 * i] = (a0 as i16) - (b0 as i16);

@@ -19,7 +19,8 @@ pub fn analyze_kem_hybrid1() -> CombinerSecurityAnalysis {
         ],
         classical_reduction_loss: "Tight reduction (Adv_comb <= Adv_lat + Adv_code + 2 * Adv_HKDF)",
         qrom_reduction_loss: "O(q_ro^2 * epsilon) reduction loss via O2H (One-Way to Hiding) lemma",
-        fault_tolerance_level: "1-out-of-2 Hardness Collapse Tolerance (Secure if either M-LWE or QC-MDPC holds)",
+        fault_tolerance_level:
+            "1-out-of-2 Hardness Collapse Tolerance (Secure if either M-LWE or QC-MDPC holds)",
     }
 }
 
@@ -32,6 +33,7 @@ pub fn analyze_sig_hybrid1() -> CombinerSecurityAnalysis {
         ],
         classical_reduction_loss: "Tight EUF-CMA reduction (Adv_sig <= min(Adv_hash, Adv_lat))",
         qrom_reduction_loss: "Standard QROM bound for Merkle trees and Fiat-Shamir with aborts",
-        fault_tolerance_level: "1-out-of-2 Hardness Collapse Tolerance (EUF-CMA holds if either Hash or Lattice holds)",
+        fault_tolerance_level:
+            "1-out-of-2 Hardness Collapse Tolerance (EUF-CMA holds if either Hash or Lattice holds)",
     }
 }

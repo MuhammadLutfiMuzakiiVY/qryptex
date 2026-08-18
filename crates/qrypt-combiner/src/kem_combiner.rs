@@ -89,12 +89,7 @@ impl<K1: Kem, K2: Kem> Kem for QryptHybridKem<K1, K2> {
             pk2: pk2.clone(),
         };
 
-        let sk = HybridSecretKey {
-            sk1,
-            sk2,
-            pk1,
-            pk2,
-        };
+        let sk = HybridSecretKey { sk1, sk2, pk1, pk2 };
 
         Ok((pk, sk))
     }
@@ -246,12 +241,7 @@ impl<K1: Kem, K2: Kem> Kem for QryptHybridKem<K1, K2> {
         offset += 4;
         let pk2 = K2::deserialize_public_key(&bytes[offset..offset + len_p2])?;
 
-        Ok(HybridSecretKey {
-            sk1,
-            sk2,
-            pk1,
-            pk2,
-        })
+        Ok(HybridSecretKey { sk1, sk2, pk1, pk2 })
     }
 
     fn serialize_ciphertext(ct: &Self::Ciphertext) -> Vec<u8> {

@@ -57,7 +57,13 @@ fn prf(seed: &[u8; HASH_LEN], addr: &[u8]) -> [u8; HASH_LEN] {
     out
 }
 
-fn hash_node(left: &[u8; HASH_LEN], right: &[u8; HASH_LEN], pub_seed: &[u8; HASH_LEN], level: u8, index: u32) -> [u8; HASH_LEN] {
+fn hash_node(
+    left: &[u8; HASH_LEN],
+    right: &[u8; HASH_LEN],
+    pub_seed: &[u8; HASH_LEN],
+    level: u8,
+    index: u32,
+) -> [u8; HASH_LEN] {
     let mut hasher = Shake256::default();
     hasher.update(pub_seed);
     hasher.update(&[level]);
@@ -69,7 +75,13 @@ fn hash_node(left: &[u8; HASH_LEN], right: &[u8; HASH_LEN], pub_seed: &[u8; HASH
     out
 }
 
-fn chain(input: &[u8; HASH_LEN], start: usize, steps: usize, pub_seed: &[u8; HASH_LEN], chain_idx: usize) -> [u8; HASH_LEN] {
+fn chain(
+    input: &[u8; HASH_LEN],
+    start: usize,
+    steps: usize,
+    pub_seed: &[u8; HASH_LEN],
+    chain_idx: usize,
+) -> [u8; HASH_LEN] {
     let mut out = *input;
     for step in start..(start + steps) {
         let mut hasher = Shake256::default();
@@ -83,7 +95,11 @@ fn chain(input: &[u8; HASH_LEN], start: usize, steps: usize, pub_seed: &[u8; HAS
 }
 
 /// Compute WOTS+ leaf public key from secret seed and leaf index
-fn compute_wots_pk(sec_seed: &[u8; HASH_LEN], pub_seed: &[u8; HASH_LEN], leaf_idx: u32) -> [u8; HASH_LEN] {
+fn compute_wots_pk(
+    sec_seed: &[u8; HASH_LEN],
+    pub_seed: &[u8; HASH_LEN],
+    leaf_idx: u32,
+) -> [u8; HASH_LEN] {
     let mut wots_pk_hasher = Shake256::default();
     wots_pk_hasher.update(pub_seed);
     wots_pk_hasher.update(&leaf_idx.to_be_bytes());
@@ -103,7 +119,10 @@ fn compute_wots_pk(sec_seed: &[u8; HASH_LEN], pub_seed: &[u8; HASH_LEN], leaf_id
 }
 
 /// Build Merkle tree from secret seed and compute all nodes
-fn build_merkle_tree(sec_seed: &[u8; HASH_LEN], pub_seed: &[u8; HASH_LEN]) -> (Vec<Vec<[u8; HASH_LEN]>>, [u8; HASH_LEN]) {
+fn build_merkle_tree(
+    sec_seed: &[u8; HASH_LEN],
+    pub_seed: &[u8; HASH_LEN],
+) -> (Vec<Vec<[u8; HASH_LEN]>>, [u8; HASH_LEN]) {
     let mut tree: Vec<Vec<[u8; HASH_LEN]>> = Vec::with_capacity(TREE_HEIGHT + 1);
 
     // Leaves (Level 0)
@@ -118,7 +137,13 @@ fn build_merkle_tree(sec_seed: &[u8; HASH_LEN], pub_seed: &[u8; HASH_LEN]) -> (V
         let prev_level = &tree[h];
         let mut curr_level = Vec::with_capacity(prev_level.len() / 2);
         for i in 0..(prev_level.len() / 2) {
-            let parent = hash_node(&prev_level[2 * i], &prev_level[2 * i + 1], pub_seed, (h + 1) as u8, i as u32);
+            let parent = hash_node(
+                &prev_level[2 * i],
+                &prev_level[2 * i + 1],
+                pub_seed,
+                (h + 1) as u8,
+                i as u32,
+            );
             curr_level.push(parent);
         }
         tree.push(curr_level);
@@ -192,7 +217,8 @@ impl SignatureScheme for HashTreeSignature {
         hasher.finalize_xof().read(&mut msg_digest);
 
         // Pseudo-random leaf index derived from msg_digest
-        let leaf_idx = u32::from_be_bytes(msg_digest[0..4].try_into().unwrap()) % (NUM_LEAVES as u32);
+        let leaf_idx =
+            u32::from_be_bytes(msg_digest[0..4].try_into().unwrap()) % (NUM_LEAVES as u32);
 
         let digits = message_to_wots_digits(&msg_digest);
 
@@ -225,11 +251,7 @@ impl SignatureScheme for HashTreeSignature {
         })
     }
 
-    fn verify(
-        pk: &Self::PublicKey,
-        msg: &[u8],
-        sig: &Self::Signature,
-    ) -> Result<bool, QryptError> {
+    fn verify(pk: &Self::PublicKey, msg: &[u8], sig: &Self::Signature) -> Result<bool, QryptError> {
         if sig.wots_sig.len() != WOTS_LEN || sig.auth_path.len() != TREE_HEIGHT {
             return Ok(false);
         }

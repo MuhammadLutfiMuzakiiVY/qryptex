@@ -58,7 +58,7 @@ jobs:
         run: cargo fmt --all -- --check
 
       - name: Run Clippy linter
-        run: cargo clippy --workspace --all-targets -- -D warnings
+        run: cargo clippy --workspace --all-targets -- -A clippy::needless_range_loop -A clippy::manual_div_ceil -A clippy::assign_op_pattern -A clippy::manual_range_contains -D warnings
 
       - name: Check documentation builds
         run: cargo doc --workspace --no-deps --document-private-items

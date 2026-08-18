@@ -77,7 +77,7 @@ fn expand_matrix(seed: &[u8; 32]) -> [[Poly; K]; K] {
             hasher.update(seed);
             hasher.update(&[i as u8, j as u8]);
             let mut reader = hasher.finalize_xof();
-            
+
             let mut coeffs = [0i16; N];
             let mut ctr = 0;
             let mut buf = [0u8; 3];
@@ -171,7 +171,12 @@ impl Kem for LatticeKem {
         let pk = LatticePublicKey { seed, t };
         let hpk = hash_public_key(&pk);
 
-        let sk = LatticeSecretKey { s, pk: pk.clone(), hpk, z };
+        let sk = LatticeSecretKey {
+            s,
+            pk: pk.clone(),
+            hpk,
+            z,
+        };
         Ok((pk, sk))
     }
 
@@ -334,7 +339,10 @@ impl Kem for LatticeKem {
         let mut v_prime = v_acc.add(&e2).add(&msg_prime_poly);
         v_prime.freeze();
 
-        let ct_prime = LatticeCiphertext { u: u_prime, v: v_prime };
+        let ct_prime = LatticeCiphertext {
+            u: u_prime,
+            v: v_prime,
+        };
 
         let ct_bytes = Self::serialize_ciphertext(ct);
         let ct_prime_bytes = Self::serialize_ciphertext(&ct_prime);

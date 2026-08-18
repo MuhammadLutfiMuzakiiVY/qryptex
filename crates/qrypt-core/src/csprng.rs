@@ -1,6 +1,6 @@
-use rand_core::{CryptoRng, RngCore, Error};
-use rand_chacha::ChaCha20Rng;
 use rand_chacha::rand_core::SeedableRng;
+use rand_chacha::ChaCha20Rng;
+use rand_core::{CryptoRng, Error, RngCore};
 
 /// Secure entropy source wrapping OS cryptographically secure random number generator (getrandom).
 pub struct SecureOsRng;

@@ -86,12 +86,7 @@ impl<S1: SignatureScheme, S2: SignatureScheme> SignatureScheme for QryptHybridSi
             pk2: pk2.clone(),
         };
 
-        let sk = HybridSigSecretKey {
-            sk1,
-            sk2,
-            pk1,
-            pk2,
-        };
+        let sk = HybridSigSecretKey { sk1, sk2, pk1, pk2 };
 
         Ok((pk, sk))
     }
@@ -113,11 +108,7 @@ impl<S1: SignatureScheme, S2: SignatureScheme> SignatureScheme for QryptHybridSi
         Ok(HybridSignature { sig1, sig2 })
     }
 
-    fn verify(
-        pk: &Self::PublicKey,
-        msg: &[u8],
-        sig: &Self::Signature,
-    ) -> Result<bool, QryptError> {
+    fn verify(pk: &Self::PublicKey, msg: &[u8], sig: &Self::Signature) -> Result<bool, QryptError> {
         // 1. Verify S1 signature on original message
         let v1 = S1::verify(&pk.pk1, msg, &sig.sig1)?;
         if !v1 {
@@ -205,12 +196,7 @@ impl<S1: SignatureScheme, S2: SignatureScheme> SignatureScheme for QryptHybridSi
         offset += 4;
         let pk2 = S2::deserialize_public_key(&bytes[offset..offset + len_p2])?;
 
-        Ok(HybridSigSecretKey {
-            sk1,
-            sk2,
-            pk1,
-            pk2,
-        })
+        Ok(HybridSigSecretKey { sk1, sk2, pk1, pk2 })
     }
 
     fn serialize_signature(sig: &Self::Signature) -> Vec<u8> {

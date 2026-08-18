@@ -32,7 +32,11 @@ pub fn welch_t_test(group_a: &[f64], group_b: &[f64]) -> f64 {
 }
 
 /// Run timing audit on two closures (e.g. valid ciphertext vs invalid ciphertext)
-pub fn run_timing_audit<F1, F2>(mut func_a: F1, mut func_b: F2, iterations: usize) -> TimingAuditReport
+pub fn run_timing_audit<F1, F2>(
+    mut func_a: F1,
+    mut func_b: F2,
+    iterations: usize,
+) -> TimingAuditReport
 where
     F1: FnMut(),
     F2: FnMut(),
@@ -70,15 +74,23 @@ mod tests {
 
     #[test]
     fn test_timing_audit_mock() {
-        let report = run_timing_audit(|| {
-            let mut x = 0;
-            for i in 0..100 { x += i; }
-            std::hint::black_box(x);
-        }, || {
-            let mut y = 0;
-            for j in 0..100 { y += j; }
-            std::hint::black_box(y);
-        }, 500);
+        let report = run_timing_audit(
+            || {
+                let mut x = 0;
+                for i in 0..100 {
+                    x += i;
+                }
+                std::hint::black_box(x);
+            },
+            || {
+                let mut y = 0;
+                for j in 0..100 {
+                    y += j;
+                }
+                std::hint::black_box(y);
+            },
+            500,
+        );
 
         // Identical operations should not trigger timing leak threshold
         assert!(!report.is_leak_detected);

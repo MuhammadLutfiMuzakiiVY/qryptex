@@ -23,7 +23,7 @@ impl Drop for QcPoly {
 impl QcPoly {
     /// Create a zero polynomial of size `r`
     pub fn zero(r: usize) -> Self {
-        let num_words = (r + 63) / 64;
+        let num_words = r.div_ceil(64);
         Self {
             r,
             words: vec![0u64; num_words],
@@ -117,7 +117,7 @@ impl QcPoly {
 
     /// Serialize to bytes
     pub fn to_bytes(&self) -> Vec<u8> {
-        let byte_len = (self.r + 7) / 8;
+        let byte_len = self.r.div_ceil(8);
         let mut bytes = vec![0u8; byte_len];
         for i in 0..self.r {
             if self.get_bit(i) == 1 {

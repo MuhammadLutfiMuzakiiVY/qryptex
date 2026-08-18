@@ -26,7 +26,8 @@ fn bench_sig(c: &mut Criterion) {
 
     c.bench_function("hash_sig_verify", |b| {
         b.iter(|| {
-            HashTreeSignature::verify(black_box(&hash_pk), black_box(msg), black_box(&hash_sig)).unwrap()
+            HashTreeSignature::verify(black_box(&hash_pk), black_box(msg), black_box(&hash_sig))
+                .unwrap()
         })
     });
 
@@ -39,7 +40,8 @@ fn bench_sig(c: &mut Criterion) {
 
     c.bench_function("lattice_sig_verify", |b| {
         b.iter(|| {
-            LatticeSignatureScheme::verify(black_box(&lat_pk), black_box(msg), black_box(&lat_sig)).unwrap()
+            LatticeSignatureScheme::verify(black_box(&lat_pk), black_box(msg), black_box(&lat_sig))
+                .unwrap()
         })
     });
 
@@ -52,7 +54,8 @@ fn bench_sig(c: &mut Criterion) {
 
     c.bench_function("hybrid_sig1_verify", |b| {
         b.iter(|| {
-            QryptSigHybrid1::verify(black_box(&hyb_pk), black_box(msg), black_box(&hyb_sig)).unwrap()
+            QryptSigHybrid1::verify(black_box(&hyb_pk), black_box(msg), black_box(&hyb_sig))
+                .unwrap()
         })
     });
 }

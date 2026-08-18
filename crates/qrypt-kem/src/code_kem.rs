@@ -86,12 +86,7 @@ pub fn invert_qc_poly(a: &QcPoly) -> Option<QcPoly> {
     aux1[0] = 1; // 1
 
     fn deg(p: &[u8]) -> Option<usize> {
-        for i in (0..p.len()).rev() {
-            if p[i] == 1 {
-                return Some(i);
-            }
-        }
-        None
+        (0..p.len()).rev().find(|&i| p[i] == 1)
     }
 
     while let Some(d1) = deg(&rem1) {
@@ -350,7 +345,7 @@ impl Kem for CodeKem {
     }
 
     fn deserialize_public_key(bytes: &[u8]) -> Result<Self::PublicKey, QryptError> {
-        let expected = (QC_R + 7) / 8;
+        let expected = QC_R.div_ceil(8);
         if bytes.len() != expected {
             return Err(QryptError::InvalidKeyLength);
         }
@@ -369,7 +364,7 @@ impl Kem for CodeKem {
     }
 
     fn deserialize_secret_key(bytes: &[u8]) -> Result<Self::SecretKey, QryptError> {
-        let poly_len = (QC_R + 7) / 8;
+        let poly_len = QC_R.div_ceil(8);
         let expected = 3 * poly_len + 32 + 32;
         if bytes.len() != expected {
             return Err(QryptError::InvalidKeyLength);
@@ -390,7 +385,7 @@ impl Kem for CodeKem {
     }
 
     fn deserialize_ciphertext(bytes: &[u8]) -> Result<Self::Ciphertext, QryptError> {
-        let expected = (QC_R + 7) / 8;
+        let expected = QC_R.div_ceil(8);
         if bytes.len() != expected {
             return Err(QryptError::InvalidCiphertextLength);
         }

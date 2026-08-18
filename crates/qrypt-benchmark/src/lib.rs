@@ -10,11 +10,11 @@ pub struct BenchmarkMetrics {
 }
 
 pub fn inspect_sizes() -> Vec<BenchmarkMetrics> {
-    use qrypt_kem::{Kem, LatticeKem, CodeKem};
-    use qrypt_signature::{SignatureScheme, HashTreeSignature, LatticeSignatureScheme};
     use qrypt_combiner::{QryptKemHybrid1, QryptSigHybrid1};
-    use rand_chacha::ChaCha20Rng;
+    use qrypt_kem::{CodeKem, Kem, LatticeKem};
+    use qrypt_signature::{HashTreeSignature, LatticeSignatureScheme, SignatureScheme};
     use rand_chacha::rand_core::SeedableRng;
+    use rand_chacha::ChaCha20Rng;
 
     let mut rng = ChaCha20Rng::from_seed([99u8; 32]);
 

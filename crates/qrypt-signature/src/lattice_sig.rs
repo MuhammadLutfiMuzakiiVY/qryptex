@@ -9,8 +9,8 @@ use zeroize::Zeroize;
 pub const SIG_K: usize = 2; // Rank 2 for module
 pub const SIG_L: usize = 2;
 pub const BOUND_B: i16 = 4000; // Masking bound
-pub const BETA: i16 = 10;      // Challenge scaling bound
-pub const TAU: usize = 5;      // Number of non-zero coefficients in challenge
+pub const BETA: i16 = 10; // Challenge scaling bound
+pub const TAU: usize = 5; // Number of non-zero coefficients in challenge
 
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct LatticeSigPublicKey {
@@ -119,7 +119,11 @@ fn sample_challenge(msg: &[u8], w: &[Poly; SIG_K], pk_bytes: &[u8]) -> Poly {
         reader.read(&mut pos_buf);
         let idx = pos_buf[0] as usize;
         if idx < N && c.coeffs[idx] == 0 {
-            let sign = if (sign_bits >> set_count) & 1 == 1 { 1i16 } else { -1i16 };
+            let sign = if (sign_bits >> set_count) & 1 == 1 {
+                1i16
+            } else {
+                -1i16
+            };
             c.coeffs[idx] = sign;
             set_count += 1;
         }
@@ -155,7 +159,8 @@ fn poly_mul_challenge_t(c: &Poly, t: &Poly) -> Poly {
                 if i + j < N {
                     res.coeffs[i + j] = barrett_reduce(res.coeffs[i + j] + ci * t.coeffs[j]);
                 } else {
-                    res.coeffs[i + j - N] = barrett_reduce(res.coeffs[i + j - N] - ci * t.coeffs[j]);
+                    res.coeffs[i + j - N] =
+                        barrett_reduce(res.coeffs[i + j - N] - ci * t.coeffs[j]);
                 }
             }
         }
@@ -273,11 +278,7 @@ impl SignatureScheme for LatticeSignatureScheme {
         Err(QryptError::RngFailure)
     }
 
-    fn verify(
-        pk: &Self::PublicKey,
-        msg: &[u8],
-        sig: &Self::Signature,
-    ) -> Result<bool, QryptError> {
+    fn verify(pk: &Self::PublicKey, msg: &[u8], sig: &Self::Signature) -> Result<bool, QryptError> {
         // 1. Check norm bound on signature z
         for i in 0..SIG_L {
             for n in 0..N {

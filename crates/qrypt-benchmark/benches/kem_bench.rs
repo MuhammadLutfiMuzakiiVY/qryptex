@@ -24,9 +24,7 @@ fn bench_kem(c: &mut Criterion) {
     });
 
     c.bench_function("lattice_kem_decaps", |b| {
-        b.iter(|| {
-            LatticeKem::decapsulate(black_box(&lat_sk), black_box(&lat_ct)).unwrap()
-        })
+        b.iter(|| LatticeKem::decapsulate(black_box(&lat_sk), black_box(&lat_ct)).unwrap())
     });
 
     c.bench_function("code_kem_encaps", |b| {
@@ -37,9 +35,7 @@ fn bench_kem(c: &mut Criterion) {
     });
 
     c.bench_function("code_kem_decaps", |b| {
-        b.iter(|| {
-            CodeKem::decapsulate(black_box(&code_sk), black_box(&code_ct)).unwrap()
-        })
+        b.iter(|| CodeKem::decapsulate(black_box(&code_sk), black_box(&code_ct)).unwrap())
     });
 
     c.bench_function("hybrid_kem1_encaps", |b| {
@@ -50,9 +46,7 @@ fn bench_kem(c: &mut Criterion) {
     });
 
     c.bench_function("hybrid_kem1_decaps", |b| {
-        b.iter(|| {
-            QryptKemHybrid1::decapsulate(black_box(&hyb_sk), black_box(&hyb_ct)).unwrap()
-        })
+        b.iter(|| QryptKemHybrid1::decapsulate(black_box(&hyb_sk), black_box(&hyb_ct)).unwrap())
     });
 }
 

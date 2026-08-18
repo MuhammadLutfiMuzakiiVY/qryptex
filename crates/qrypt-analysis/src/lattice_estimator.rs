@@ -12,7 +12,7 @@ pub struct LatticeHardnessReport {
 pub fn estimate_lwe_security(n: usize, k: usize, q: i16, eta: usize) -> LatticeHardnessReport {
     let dimension = n * k;
     let _sigma = (eta as f64 / 2.0).sqrt();
-    
+
     // Root Hermite factor delta_0 needed: delta_0 = (sigma * sqrt(2*PI*e) / q)^(1 / (2*dimension))
     // Standard relation: delta_0 = (beta / (2*PI*e))^(1 / (2*(beta-1)))
     // For standard Level 1 (dim=512, q=3329, eta=2/3): beta is approximately 400 - 450.

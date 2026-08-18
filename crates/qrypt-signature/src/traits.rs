@@ -3,7 +3,9 @@ use rand_core::{CryptoRng, RngCore};
 use zeroize::Zeroize;
 
 /// Generic Post-Quantum Digital Signature Scheme Trait
-pub trait SignatureScheme: Clone + PartialEq + Eq + core::fmt::Debug + Send + Sync + 'static + Sized {
+pub trait SignatureScheme:
+    Clone + PartialEq + Eq + core::fmt::Debug + Send + Sync + 'static + Sized
+{
     type PublicKey: Clone + Send + Sync + PartialEq + Eq;
     type SecretKey: Clone + Send + Sync + Zeroize;
     type Signature: Clone + Send + Sync + PartialEq + Eq;
@@ -24,11 +26,7 @@ pub trait SignatureScheme: Clone + PartialEq + Eq + core::fmt::Debug + Send + Sy
     ) -> Result<Self::Signature, QryptError>;
 
     /// Verify a signature against a public key and message
-    fn verify(
-        pk: &Self::PublicKey,
-        msg: &[u8],
-        sig: &Self::Signature,
-    ) -> Result<bool, QryptError>;
+    fn verify(pk: &Self::PublicKey, msg: &[u8], sig: &Self::Signature) -> Result<bool, QryptError>;
 
     /// Serialize public key to bytes
     fn serialize_public_key(pk: &Self::PublicKey) -> Vec<u8>;

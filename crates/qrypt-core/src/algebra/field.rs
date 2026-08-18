@@ -45,7 +45,7 @@ mod tests {
     #[test]
     fn test_montgomery_reduce() {
         let _r_mod_q = 65536 % 3329; // 2285
-        // montgomery_reduce(x * R) should be x mod q
+                                     // montgomery_reduce(x * R) should be x mod q
         for x in 0..100 {
             let xr = x * 65536;
             let res = freeze(montgomery_reduce(xr));
@@ -57,7 +57,7 @@ mod tests {
     fn test_freeze_range() {
         for x in -10000..10000 {
             let f = freeze(x as i16);
-            assert!(f >= 0 && f < Q);
+            assert!((0..Q).contains(&f));
         }
     }
 }
