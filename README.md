@@ -150,6 +150,16 @@ cargo bench -p qrypt-benchmark
 
 ---
 
+## Engineering Philosophy
+
+1. **Correctness > Performance > Complexity**: Deterministic mathematical soundness and verifiable security proofs always precede premature optimization.
+2. **Explicit Security Assumptions**: Every scheme, parameter set, and security reduction explicitly documents its formal adversary model and bounds.
+3. **Zero Undocumented `unsafe`**: `#![forbid(unsafe_code)]` enforced across workspace; hardware intrinsics require documented invariant proofs.
+4. **Reproducible Benchmarks & Empirical Audits**: Performance latencies and Welch's $t$-test leakage results are verifiable via standard tooling (`cargo bench`, `cargo test`).
+5. **Memory Hygiene by Default**: Secret keys, polynomial states, and intermediate secrets strictly implement `ZeroizeOnDrop` and constant-time execution (`subtle`).
+
+---
+
 ## Documentation
 
 - [DESIGN.md](DESIGN.md) — Mathematical specifications and transformation mechanics.
